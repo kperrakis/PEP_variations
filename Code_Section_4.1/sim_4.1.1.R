@@ -10,7 +10,8 @@ s_laplace <- 1 / sqrt(2)
 s_1 <- (1 - 0.5)
 s_2 <- (1 + 0.5)
 
-# choose error distribution available options are: 'normal', 'laplace', 'a-normal' (asymmetric normal) and 'h-normal' (heteroscedastic normmal)
+# choose error distribution available options are: 'normal', 'laplace', 'a-normal' (asymmetric normal) 
+# and 'h-normal' (heteroscedastic normmal)
 
 errors <- 'normal'
 
@@ -202,7 +203,9 @@ for (sample_sizes in 1:Nsizes)
     prob_true_model4[k, sample_sizes] <-
       best.hypergn[ranking4[k], p + 3]
   }
-} # end of for over the 5 methods for generating data
+} 
+
+# end of for over the 5 methods for generating data
 
 results$inc.probs <-
   list(inc_prob.drpep,

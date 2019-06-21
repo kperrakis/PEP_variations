@@ -11,7 +11,8 @@ s_laplace <- 1 / sqrt(2)
 s_1 <- (1 - 0.5)
 s_2 <- (1 + 0.5)
 
-# choose error distribution available options are: 'normal', 'laplace', 'a-normal' (asymmetric normal) and 'h-normal' (heteroscedastic normmal)
+# choose error distribution available options are: 'normal', 'laplace', 'a-normal' (asymmetric normal) 
+# and 'h-normal' (heteroscedastic normmal)
 
 errors <- 'normal'
 

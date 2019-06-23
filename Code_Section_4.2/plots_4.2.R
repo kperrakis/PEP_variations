@@ -70,7 +70,7 @@ graphics.off()
 
 ##########################
 nsize0 <- c(30, 50, 100, 500, 750)
-nn <- length(nsize0)n
+nn <- length(nsize0)
 names.n <-
   paste('(n=', nsize0, ", p=", resultsS1$p, ")", sep = '')[1:nn]
 nm <- 5

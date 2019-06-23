@@ -108,18 +108,18 @@ for (sample_sizes in 1:Nsizes)
   print(sample_sizes)
   x.original <- sim[[sample_sizes]]$x
   x <- scale(x.original, center = T, scale = F)
-  y100 <- sim[[sample_sizes]]$y
-  y100 <- scale(y100, center = T, scale = F)
+  y_c <- sim[[sample_sizes]]$y
+  y_c <- scale(y_c, center = T, scale = F)
   
   # NOTE that we center X and y for our method. For the rest of the methods working with y or y_center it is the same
   
-  n <- nrow(y100)
+  n <- nrow(y_c)
   
   # results DRPEP
   
   for (i in 1:nsamples) {
     print(noquote(paste("DRPEP Sample", i)))
-    res1 <- full_enumeration(y100[, i], x, g = nrow(x) ^ 2)
+    res1 <- full_enumeration(y_c[, i], x, g = nrow(x) ^ 2)
     res2 <- res1 - max(res1)
     prob <- exp(res2) / sum(exp(res2))
     model_prob.drpep[, i, sample_sizes] <- prob
@@ -135,7 +135,7 @@ for (sample_sizes in 1:Nsizes)
   for (i in 1:nsamples) {
     print(noquote(paste("CRPEP Sample", i)))
     res1 <-
-      full_enumeration(y100[, i], x, g = nrow(x) ^ 2, crpep = T)
+      full_enumeration(y_c[, i], x, g = nrow(x) ^ 2, crpep = T)
     res2 <- res1 - max(res1)
     prob <- exp(res2) / sum(exp(res2))
     model_prob.crpep[, i, sample_sizes] <- prob
@@ -148,7 +148,7 @@ for (sample_sizes in 1:Nsizes)
   
   # results g-prior + hyper-g + hyper-g/n
   
-  current.data <- data.frame(y100[, 1], x)
+  current.data <- data.frame(y_c[, 1], x)
   names(current.data) <- c('y', paste('X', 1:p, sep = ''))
   
   ranking2 <- numeric(nsamples)
@@ -157,7 +157,7 @@ for (sample_sizes in 1:Nsizes)
   
   for (k in 1:nsamples) {
     print(noquote(paste("Others Sample", k)))
-    current.data$y <- y100[, k]
+    current.data$y <- y_c[, k]
     res.gprior <-
       bas.lm(
         y ~ . ,
